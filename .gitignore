@@ -5,6 +5,17 @@ bin
 .metadata
 .classpath
 .project
+eclipse/
+*.pydevproject
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
 
 # idea
 out
@@ -23,3 +34,17 @@ run
 
 # Files from Forge MDK
 forge*changelog.txt
+
+run/
+.gradle/
+build/
+gradle-app.setting
+
+# External tool builders
+.externalToolBuilders/
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
