@@ -1,4 +1,10 @@
-We want to create a mod that adds difficulty to TFG in terms of PvE. We aim to do this by implementing a NPC raid system.
+**Bastionfall** is a Forge mod for TerraFirmaGreg (TFG) that adds progression-based PvE raid mechanics. Players trigger or attract raids as they advance through technological ages. Raids involve escalating enemy waves targeting important infrastructure, requiring players to defend their bases.
+
+The system is centered around:
+- Age Advancement Blocks (AABs)
+- Claim-based base defense
+- Custom AI-driven mobs with different roles
+- Time-based and player-triggered raid events
 
 # When do raids occur
 In order to progress through ages, players must fight through a wave
@@ -21,7 +27,7 @@ Block actions can be triggered as many times as desired by the player
 Players can also easily trigger raids themselves
 
 ## Interval based event
-Raids occur every `n` Minecraft days. They are effected by the tier of the last player triggered raid. Players can opt in or out of raids.
+Raids occur every `n` Minecraft days. Interval raids use the last used AAB as the faction context (to scale composition). Players can opt in or out of raids.
 
 # Raid Structure
 
@@ -60,7 +66,11 @@ Raid boss runs away at the end of AAB cycle, taunting the player in global chat 
 # Raid Goals
 The goal of any raid is to destroy any AAB present in a base's claimed area.
 
-Raid mobs are able to destroy specific whitelisted blocks to gain access to the AAB. Raid mobs will attempt to destroy obstacles in their path
+Mobs will pathfind toward AABs and attempt to destroy blocks using:
+- Standard block breaking (delayed via timer per block)
+- Explosives or area effects (for specialized units)
+
+Only blocks with the tag `bastionfall:raid_breakable` can be targeted.
 
 Destroyed AABs will generate specific negative actions (exploding, fires, etc)
 
@@ -70,9 +80,12 @@ Raids can contain an additional list of targets that raid mobs have a weighted c
 
 A claim system will be used to create the right context for raids to occur. In order to trigger an AAB's action, it must be placed within a claimed chunk. If an AAB is not within a claimed chunk, its action cannot be triggered. 
 
-To claim chunks, players must craft and place a specific claim block. The claim block will claim `n` chunks around it. Claimed chunks prevent raids from spawning within them. Raids then spawn right outside claimed areas.
+To claim chunks, players must craft and place a specific claim block. The claim block will claim `n` chunks around it.
 
-Claims should have some sort of UI visualization
+Claimed areas:
+- Prevent raid spawns inside
+- Are required to activate AABs
+- Can be visualized with particle effects or UI
 
 # Rewards
 When a raid is defeated, players will receive rewards 
