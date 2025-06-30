@@ -46,3 +46,5 @@ gradle-app.setting
 
 # PDT-specific
 .buildpath
+/logs/debug.log
+/logs/latest.log
