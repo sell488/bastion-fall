@@ -42,7 +42,7 @@ public class ClaimStorage extends SavedData {
 		return nbt;
 	}
 
-	private ClaimStorage() { }
+	public ClaimStorage() { }
 
 	public static ClaimStorage get(ServerLevel level) {
 		if(level.dimension() != level.getServer().overworld().dimension()) {
