@@ -16,7 +16,7 @@ import java.util.UUID;
 public class BastionfallCommands {
 	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 		dispatcher.register(
-				Commands.literal("bastionfall")
+				Commands.literal("data/bastionfall")
 						.then(Commands.literal("testclaim")
 								.executes(ctx -> {
 									ServerPlayer player = ctx.getSource().getPlayerOrException();
