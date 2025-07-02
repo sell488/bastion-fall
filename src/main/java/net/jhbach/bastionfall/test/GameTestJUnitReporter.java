@@ -19,11 +19,7 @@ public class GameTestJUnitReporter {
 		}
 	}
 
-	private static boolean initialized = false;
-
 	public static void init() {
-		if (initialized) return;
-		initialized = true;
 		results.clear();
 
 		try {

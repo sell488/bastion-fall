@@ -6,6 +6,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.saveddata.SavedData;
+import org.jetbrains.annotations.VisibleForTesting;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -69,5 +70,10 @@ public class ClaimStorage extends SavedData {
 		if(claims.remove(pos) != null) {
 			setDirty();
 		}
+	}
+
+	@VisibleForTesting
+	public void resetClaims() {
+		claims.clear();
 	}
 }

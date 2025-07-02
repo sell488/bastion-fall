@@ -37,6 +37,8 @@ forge*changelog.txt
 # Run folder
 /run/logs/*.gz
 /run/logs/*.log.gz
+run/logs/*.gz
+run/logs/debug-*.log.gz
 
 .gradle/
 build/
