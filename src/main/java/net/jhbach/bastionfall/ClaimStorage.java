@@ -38,6 +38,7 @@ public class ClaimStorage extends SavedData {
 			entry.putInt("ChunkX", e.getKey().x);
 			entry.putInt("ChunkZ", e.getKey().z);
 			entry.putUUID("Owner", e.getValue());
+			list.add(entry);
 		}
 		nbt.put("Claims", list);
 		return nbt;
