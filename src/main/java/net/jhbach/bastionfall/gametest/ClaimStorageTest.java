@@ -23,7 +23,7 @@ public class ClaimStorageTest {
 	}
 
 	@GameTest(template = "claimblock", batch = "claimBlock")
-	public static void testClaimStorageWorks2(GameTestHelper helper) {
+	public static void claimStorageChunkUnclaimed(GameTestHelper helper) {
 		ServerLevel level = helper.getLevel();
 
 		ChunkPos pos = new ChunkPos(helper.absolutePos(new BlockPos(2, 0, 2))); // get chunk pos for world position
@@ -43,7 +43,7 @@ public class ClaimStorageTest {
 	}
 
 	@GameTest(template = "claimblock", batch = "claimBlock")
-	public static void testClaimStorageWorks(GameTestHelper helper) {
+	public static void claimStorageChunkClaimed(GameTestHelper helper) {
 		ServerLevel level = helper.getLevel();
 
 		ChunkPos pos = new ChunkPos(helper.absolutePos(new BlockPos(2, 0, 2))); // get chunk pos for world position
@@ -75,6 +75,4 @@ public class ClaimStorageTest {
 		GameTestJUnitReporter.writeReport();
 		helper.succeed();
 	}
-
-
 }
