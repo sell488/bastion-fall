@@ -7,7 +7,10 @@
   },
   "minecraft:adventure/adventuring_time": {
     "criteria": {
-      "minecraft:windswept_hills": "2025-06-24 19:44:31 -0500"
+      "minecraft:windswept_hills": "2025-06-24 19:44:31 -0500",
+      "minecraft:swamp": "2025-07-01 22:34:18 -0500",
+      "minecraft:forest": "2025-07-01 22:28:40 -0500",
+      "minecraft:plains": "2025-07-01 22:28:24 -0500"
     },
     "done": false
   },
@@ -104,6 +107,53 @@
   "minecraft:recipes/misc/map": {
     "criteria": {
       "has_compass": "2025-06-29 01:45:51 -0500"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cake": {
+    "criteria": {
+      "has_egg": "2025-07-01 22:33:07 -0500"
+    },
+    "done": true
+  },
+  "minecraft:adventure/sniper_duel": {
+    "criteria": {
+      "killed_skeleton": "2025-07-01 22:30:41 -0500"
+    },
+    "done": true
+  },
+  "minecraft:adventure/shoot_arrow": {
+    "criteria": {
+      "shot_arrow": "2025-07-01 22:29:09 -0500"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2025-07-01 22:29:11 -0500"
+    },
+    "done": true
+  },
+  "minecraft:adventure/kill_all_mobs": {
+    "criteria": {
+      "minecraft:skeleton": "2025-07-01 22:29:19 -0500",
+      "minecraft:spider": "2025-07-01 22:29:11 -0500",
+      "minecraft:creeper": "2025-07-01 22:29:24 -0500",
+      "minecraft:slime": "2025-07-01 22:34:31 -0500",
+      "minecraft:zombie": "2025-07-01 22:29:33 -0500",
+      "minecraft:zombie_villager": "2025-07-01 22:31:58 -0500"
+    },
+    "done": false
+  },
+  "minecraft:adventure/kill_a_mob": {
+    "criteria": {
+      "minecraft:spider": "2025-07-01 22:29:11 -0500"
+    },
+    "done": true
+  },
+  "minecraft:adventure/ol_betsy": {
+    "criteria": {
+      "shot_crossbow": "2025-07-01 22:28:55 -0500"
     },
     "done": true
   },

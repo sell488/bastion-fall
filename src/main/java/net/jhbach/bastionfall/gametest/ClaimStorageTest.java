@@ -31,15 +31,18 @@ public class ClaimStorageTest {
 
 		ClaimStorage storage = ClaimStorage.get(level);
 		storage.resetClaims();
+		System.out.println(storage);
 
 		if (storage.isChunkClaimed(pos)) {
-			GameTestJUnitReporter.recordFail("testClaimStorageWorks2", "Expected chunk to be unclaimed");
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), "Expected chunk to be unclaimed");
 			GameTestJUnitReporter.writeReport();
 			helper.fail("Expected chunk to be unclaimed");
+		} else {
+			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
 		}
 
-		GameTestJUnitReporter.recordPass("testClaimStorageWorks2");
 		GameTestJUnitReporter.writeReport();
+		helper.succeed();
 	}
 
 	@GameTest(template = "claimblock", batch = "claimBlock")
@@ -53,7 +56,7 @@ public class ClaimStorageTest {
 		storage.resetClaims();
 
 		if (storage.isChunkClaimed(pos)) {
-			GameTestJUnitReporter.recordFail("testClaimStorageWorks", "Expected chunk to be unclaimed");
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), "Expected chunk to be unclaimed");
 			GameTestJUnitReporter.writeReport();
 			helper.fail("Expected chunk to be unclaimed");
 		}
@@ -61,17 +64,17 @@ public class ClaimStorageTest {
 		storage.claimChunk(pos, testOwner);
 
 		if (!storage.isChunkClaimed(pos)) {
-			GameTestJUnitReporter.recordFail("testClaimStorageWorks", "Expected chunk to be claimed");
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), "Expected chunk to be claimed");
 			GameTestJUnitReporter.writeReport();
 			helper.fail("Expected chunk to be claimed");
 		}
 
 		if (!testOwner.equals(storage.getChunkOwner(pos))) {
-			GameTestJUnitReporter.recordFail("testClaimStorageWorks", "Chunk owner UUID mismatch");
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), "Chunk owner UUID mismatch");
 			GameTestJUnitReporter.writeReport();
 			helper.fail("Chunk owner UUID mismatch");
 		}
-		GameTestJUnitReporter.recordPass("testClaimStorageWorks");
+		GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
 		GameTestJUnitReporter.writeReport();
 		helper.succeed();
 	}

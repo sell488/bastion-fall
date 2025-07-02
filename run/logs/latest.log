@@ -1,59 +1,52 @@
-[01Jul2025 21:41:06.110] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412]
-[01Jul2025 21:41:06.117] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
-[01Jul2025 21:41:06.234] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
-[01Jul2025 21:41:06.281] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
-[01Jul2025 21:41:06.581] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[01Jul2025 21:41:06.583] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[01Jul2025 21:41:06.584] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[01Jul2025 21:41:06.586] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
-[01Jul2025 21:41:06.716] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[01Jul2025 21:41:07.925] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
-[01Jul2025 21:41:08.875] [main/WARN] [oshi.driver.windows.perfmon.PerfmonDisabled/]: Invalid registry value type detected for PerfOS counters. Should be REG_DWORD. Ignoring: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters.
-[01Jul2025 21:41:12.762] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
-[01Jul2025 21:41:12.764] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
-[01Jul2025 21:41:13.142] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: HELLO FROM COMMON SETUP
-[01Jul2025 21:41:13.142] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: DIRT BLOCK >> minecraft:dirt
-[01Jul2025 21:41:13.142] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: The magic number is... 42
-[01Jul2025 21:41:13.142] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: ITEM >> iron_ingot
-[01Jul2025 21:41:13.482] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[01Jul2025 21:41:14.006] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 47.4.0 Target: null
-[01Jul2025 21:41:14.064] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
-[01Jul2025 21:41:14.143] [main/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
-[01Jul2025 21:41:14.533] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[01Jul2025 21:41:14.533] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[01Jul2025 21:41:15.779] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
-[01Jul2025 21:41:15.872] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
-[01Jul2025 21:41:16.073] [main/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [bastionfall]
-[01Jul2025 21:41:16.533] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
-[01Jul2025 21:41:17.687] [Worker-Main-29/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2025 21:41:17.687] [Worker-Main-15/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2025 21:41:17.687] [Worker-Main-15/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
-[01Jul2025 21:41:18.034] [Worker-Main-9/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 16%
-[01Jul2025 21:41:18.424] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 1890 ms
-[01Jul2025 21:41:18.425] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Started game test server
-[01Jul2025 21:41:18.432] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[01Jul2025 21:41:18.432] [Server thread/INFO] [net.jhbach.bastionfall.BastionFall/]: HELLO from server starting
-[01Jul2025 21:41:18.683] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestBatchRunner/]: Running test batch 'claimBlock:1' (2 tests)...
-[01Jul2025 21:41:18.698] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 2 tests are now running!
-[01Jul2025 21:41:19.130] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+_]
-[01Jul2025 21:41:19.548] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+_]
-[01Jul2025 21:41:19.691] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+_]
-[01Jul2025 21:41:19.774] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+_]
-[01Jul2025 21:41:19.849] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+_]
-[01Jul2025 21:41:19.886] [Server thread/ERROR] [net.minecraft.gametest.framework.LogTestReporter/]: testclaimstorageworks2 failed! Didn't succeed or fail within 100 ticks
-[01Jul2025 21:41:19.886] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [+X]
-[01Jul2025 21:41:19.886] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ========= 2 GAME TESTS COMPLETE ======================
-[01Jul2025 21:41:19.887] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 1 required tests failed :(
-[01Jul2025 21:41:19.888] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]:    - testclaimstorageworks2
-[01Jul2025 21:41:19.889] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ====================================================
-[01Jul2025 21:41:19.889] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
-[01Jul2025 21:41:19.889] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
-[01Jul2025 21:41:19.890] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
-[01Jul2025 21:41:20.176] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
-[01Jul2025 21:41:20.549] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
-[01Jul2025 21:41:20.550] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
-[01Jul2025 21:41:20.562] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[01Jul2025 21:41:20.562] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[01Jul2025 21:41:20.562] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[01Jul2025 21:41:20.562] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
-[01Jul2025 21:41:20.778] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Game test server shutting down
+[01Jul2025 23:02:48.591] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412]
+[01Jul2025 23:02:48.602] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.13 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[01Jul2025 23:02:48.760] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
+[01Jul2025 23:02:48.809] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
+[01Jul2025 23:02:49.114] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01Jul2025 23:02:49.115] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01Jul2025 23:02:49.117] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[01Jul2025 23:02:49.119] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Stefans Desktop 2\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
+[01Jul2025 23:02:49.256] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[01Jul2025 23:02:50.530] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
+[01Jul2025 23:02:51.563] [main/WARN] [oshi.driver.windows.perfmon.PerfmonDisabled/]: Invalid registry value type detected for PerfOS counters. Should be REG_DWORD. Ignoring: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters.
+[01Jul2025 23:02:55.400] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
+[01Jul2025 23:02:55.401] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
+[01Jul2025 23:02:55.856] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: HELLO FROM COMMON SETUP
+[01Jul2025 23:02:55.856] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: DIRT BLOCK >> minecraft:dirt
+[01Jul2025 23:02:55.856] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: The magic number is... 42
+[01Jul2025 23:02:55.856] [modloading-worker-0/INFO] [net.jhbach.bastionfall.BastionFall/]: ITEM >> iron_ingot
+[01Jul2025 23:02:56.206] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[01Jul2025 23:02:56.708] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: UP_TO_DATE Current: 47.4.0 Target: null
+[01Jul2025 23:02:56.785] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[01Jul2025 23:02:56.890] [main/INFO] [net.minecraftforge.registries.GameData/REGISTRIES]: Injecting existing registry data into this CLIENT instance
+[01Jul2025 23:02:57.222] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[01Jul2025 23:02:57.222] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/Stefans%20Desktop%202/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.4.0_mapped_parchment_2023.09.03-1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[01Jul2025 23:02:58.432] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7 recipes
+[01Jul2025 23:02:58.538] [main/INFO] [net.minecraft.advancements.AdvancementList/]: Loaded 1271 advancements
+[01Jul2025 23:02:58.750] [main/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [bastionfall]
+[01Jul2025 23:02:59.228] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[01Jul2025 23:03:00.484] [Worker-Main-6/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[01Jul2025 23:03:00.485] [Worker-Main-6/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[01Jul2025 23:03:00.485] [Worker-Main-6/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 0%
+[01Jul2025 23:03:00.728] [Worker-Main-9/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 12%
+[01Jul2025 23:03:01.107] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 1878 ms
+[01Jul2025 23:03:01.109] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Started game test server
+[01Jul2025 23:03:01.116] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[01Jul2025 23:03:01.116] [Server thread/INFO] [net.jhbach.bastionfall.BastionFall/]: HELLO from server starting
+[01Jul2025 23:03:01.345] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestBatchRunner/]: Running test batch 'claimBlock:1' (2 tests)...
+[01Jul2025 23:03:01.359] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 2 tests are now running!
+[01Jul2025 23:03:01.457] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [++]
+[01Jul2025 23:03:01.457] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ========= 2 GAME TESTS COMPLETE ======================
+[01Jul2025 23:03:01.457] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: All 2 required tests passed :)
+[01Jul2025 23:03:01.458] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ====================================================
+[01Jul2025 23:03:01.458] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[01Jul2025 23:03:01.458] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[01Jul2025 23:03:01.458] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[01Jul2025 23:03:02.290] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[01Jul2025 23:03:02.788] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[01Jul2025 23:03:02.789] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[01Jul2025 23:03:02.806] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[01Jul2025 23:03:02.807] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[01Jul2025 23:03:02.807] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[01Jul2025 23:03:02.807] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[01Jul2025 23:03:03.024] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Game test server shutting down
