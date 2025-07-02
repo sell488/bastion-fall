@@ -30,12 +30,16 @@ build
 
 # other
 eclipse
-run
 
 # Files from Forge MDK
 forge*changelog.txt
 
-run/
+# Run folder
+/run/logs/*.gz
+/run/logs/*.log.gz
+run/logs/*.gz
+run/logs/debug-*.log.gz
+
 .gradle/
 build/
 gradle-app.setting
@@ -48,3 +52,5 @@ gradle-app.setting
 
 # PDT-specific
 .buildpath
+/logs/debug.log
+/logs/latest.log
