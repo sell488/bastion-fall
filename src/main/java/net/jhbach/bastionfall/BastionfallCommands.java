@@ -16,7 +16,7 @@ import java.util.UUID;
 public class BastionfallCommands {
 	public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
 		dispatcher.register(
-				Commands.literal("data/bastionfall")
+				Commands.literal("bastionfall")
 						.then(Commands.literal("testclaim")
 								.executes(ctx -> {
 									ServerPlayer player = ctx.getSource().getPlayerOrException();
@@ -48,6 +48,29 @@ public class BastionfallCommands {
 										storage.claimChunk(chunk, player.getUUID());
 										player.sendSystemMessage(Component.literal("Chunk claimed successfully"));
 									}
+
+									return 1;
+								}))
+		);
+		registerResetChunkCommand(dispatcher);
+	}
+
+	private static void registerResetChunkCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
+		dispatcher.register(
+				Commands.literal("bastionfall")
+						.then(Commands.literal("resetChunks")
+								.executes(ctx -> {
+									ServerPlayer player = ctx.getSource().getPlayerOrException();
+									ServerLevel level = (ServerLevel) player.level();
+
+									if (!level.dimension().equals(Level.OVERWORLD)) {
+										player.sendSystemMessage(Component.literal("Only works in Overworld"));
+										return 1;
+									}
+
+									ClaimStorage storage = ClaimStorage.get(level);
+									storage.resetClaims();
+									player.sendSystemMessage(Component.literal("All claimed chunks have been reset"));
 
 									return 1;
 								}))
