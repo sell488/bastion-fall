@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.jhbach.bastionfall.block.ModBlocks;
 import net.jhbach.bastionfall.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -77,6 +78,8 @@ public class BastionFall
     {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+        ServerLevel overworld = event.getServer().overworld();
+        ClaimStorage.get(overworld);
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

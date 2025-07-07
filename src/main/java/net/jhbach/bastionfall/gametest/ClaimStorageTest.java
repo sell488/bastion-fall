@@ -17,12 +17,12 @@ import java.util.UUID;
 @PrefixGameTestTemplate(value = false)
 public class ClaimStorageTest {
 
-	@BeforeBatch(batch="claimBlock")
+	@BeforeBatch(batch="claim")
 	public static void initTestReporter(ServerLevel level) {
 		GameTestJUnitReporter.init();
 	}
 
-	@GameTest(template = "claimblock", batch = "claimBlock")
+	@GameTest(template = "claim", batch = "claim")
 	public static void claimStorageChunkUnclaimed(GameTestHelper helper) {
 		ServerLevel level = helper.getLevel();
 
@@ -31,7 +31,6 @@ public class ClaimStorageTest {
 
 		ClaimStorage storage = ClaimStorage.get(level);
 		storage.resetClaims();
-		System.out.println(storage);
 
 		if (storage.isChunkClaimed(pos)) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), "Expected chunk to be unclaimed");
@@ -45,7 +44,7 @@ public class ClaimStorageTest {
 		helper.succeed();
 	}
 
-	@GameTest(template = "claimblock", batch = "claimBlock")
+	@GameTest(template = "claim", batch = "claim")
 	public static void claimStorageChunkClaimed(GameTestHelper helper) {
 		ServerLevel level = helper.getLevel();
 

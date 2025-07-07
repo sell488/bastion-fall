@@ -63,7 +63,6 @@ public class GameTestJUnitReporter {
 					results.stream().filter(r -> !r.passed).count() + "\">\n");
 
 			for (TestResult result : results) {
-				System.out.println(result);
 				writer.write("  <testcase classname=\"ForgeGameTests\" name=\"" + result.name + "\">\n");
 				if (!result.passed) {
 					writer.write("    <failure message=\"" + escape(result.message) + "\"/>\n");
