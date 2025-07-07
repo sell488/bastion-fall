@@ -21,7 +21,7 @@ public class ModBlocks {
 			DeferredRegister.create(ForgeRegistries.BLOCKS, BastionFall.MODID);
 
 	public static final RegistryObject<Block> CLAIM_BLOCK = registerBlock("claim_block",
-			() -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+			() -> new ClaimBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
 					.strength(5.0f)
 					.noOcclusion()
 			));
