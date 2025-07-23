@@ -151,4 +151,60 @@ public class ClaimBlockTest {
 			GameTestJUnitReporter.writeReport();
 		}
 	}
+
+	@GameTest(template = "claim_block", batch = "claim_block")
+	public void setPlacedBy_overlappingClaimsSameOwner_claimUnclaimed(GameTestHelper helper) {
+		try {
+			ServerLevel level = helper.getLevel();
+			ClaimStorage claimStorage = ClaimStorage.get(level);
+			claimStorage.resetClaims();
+
+			// Create Player
+			UUID owner = UUID.fromString("00000000-0000-0000-0000-000000000004");
+			ServerPlayer player = new ServerPlayer(
+				level.getServer(),
+				level,
+				new GameProfile(owner, "PlayerSameOwner")
+			);
+			player.setUUID(owner);
+			player.connection = new ServerGamePacketListenerImpl(
+				level.getServer(),
+				new Connection(null),
+				player
+			);
+			level.addFreshEntity(player);
+
+			// Place first ClaimBlock
+			BlockPos blockPosA = helper.absolutePos(new BlockPos(8, 1, 8));
+			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK.get();
+			level.setBlock(blockPosA, claimBlock.defaultBlockState(), 3);
+			claimBlock.setPlacedBy(level, blockPosA, claimBlock.defaultBlockState(), player, ItemStack.EMPTY);
+
+			// Place second ClaimBlock overlapping the first
+			BlockPos blockPosB = helper.absolutePos(new BlockPos(9, 1, 8));
+			level.setBlock(blockPosB, claimBlock.defaultBlockState(), 3);
+			claimBlock.setPlacedBy(level, blockPosB, claimBlock.defaultBlockState(), player, ItemStack.EMPTY);
+
+			// Check that all chunks in both claim areas are owned by the player
+			ChunkPos chunkPosA = new ChunkPos(blockPosA);
+			ChunkPos chunkPosB = new ChunkPos(blockPosB);
+			for (int dx = -1; dx <= 1; dx++) {
+				for (int dz = -1; dz <= 1; dz++) {
+					ChunkPos chunkA = new ChunkPos(chunkPosA.x + dx, chunkPosA.z + dz);
+					UUID actualOwnerA = claimStorage.getChunkOwner(chunkA);
+					helper.assertTrue(actualOwnerA != null && actualOwnerA.equals(owner), "Chunk at " + chunkA + " should be owned by the player");
+					ChunkPos chunkB = new ChunkPos(chunkPosB.x + dx, chunkPosB.z + dz);
+					UUID actualOwnerB = claimStorage.getChunkOwner(chunkB);
+					helper.assertTrue(actualOwnerB != null && actualOwnerB.equals(owner), "Chunk at " + chunkB + " should be owned by the player");
+				}
+			}
+
+			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
+			helper.succeed();
+		} catch (Throwable t) {
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
+		} finally {
+			GameTestJUnitReporter.writeReport();
+		}
+	}
 }
