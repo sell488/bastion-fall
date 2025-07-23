@@ -28,8 +28,6 @@ public class ClaimBlockTest {
 
 	@BeforeBatch(batch = "claim_block")
 	public static void initTestReporter(ServerLevel level) {
-		GameTestJUnitReporter.init();
-
 		UUID testOwner = UUID.fromString("00000000-0000-0000-0000-000000000001");
 		mockPlayer = new ServerPlayer(
 				level.getServer(),
@@ -80,8 +78,6 @@ public class ClaimBlockTest {
 		} catch (Throwable t) {
 			// Record test as failed
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
-		} finally {
-			GameTestJUnitReporter.writeReport();
 		}
 	}
 
@@ -147,8 +143,6 @@ public class ClaimBlockTest {
 			helper.succeed();
 		} catch (Throwable t) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
-		} finally {
-			GameTestJUnitReporter.writeReport();
 		}
 	}
 
@@ -203,8 +197,6 @@ public class ClaimBlockTest {
 			helper.succeed();
 		} catch (Throwable t) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
-		} finally {
-			GameTestJUnitReporter.writeReport();
 		}
 	}
 }

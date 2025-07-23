@@ -10,14 +10,18 @@ public class GameTestJUnitReporter {
 	private static final List<TestResult> results = new ArrayList<>();
 
 	static {
-		// Reset the file on first load
+		// Reset file
 		try {
 			Files.createDirectories(OUTPUT_PATH.getParent());
 			Files.deleteIfExists(OUTPUT_PATH);
 		} catch (IOException e) {
 			System.err.println("[GameTest] Could not prepare JUnit report file: " + e.getMessage());
 		}
+
+		// Add shutdown hook to write report at the end
+		Runtime.getRuntime().addShutdownHook(new Thread(GameTestJUnitReporter::writeReport));
 	}
+
 
 	public static void init() {
 		results.clear();

@@ -47,6 +47,9 @@ public class BastionFall
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
+        // GameTestJUnitReporter is initialized before any GameTest batch runs
+        net.jhbach.bastionfall.test.GameTestJUnitReporter.init();
+
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
