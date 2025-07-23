@@ -20,10 +20,17 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> BLOCKS =
 			DeferredRegister.create(ForgeRegistries.BLOCKS, BastionFall.MODID);
 
-	public static final RegistryObject<Block> CLAIM_BLOCK = registerBlock("claim_block",
+	public static final RegistryObject<Block> CLAIM_BLOCK_TIER_1 = registerBlock("claim_block_tier_1",
 			() -> new ClaimBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
 					.strength(5.0f)
 					.noOcclusion()
+			));
+
+	public static final RegistryObject<Block> CLAIM_BLOCK_TIER_2 = registerBlock("claim_block_tier_2",
+			() -> new ClaimBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+					.strength(5.0f)
+					.noOcclusion(),
+					5
 			));
 
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

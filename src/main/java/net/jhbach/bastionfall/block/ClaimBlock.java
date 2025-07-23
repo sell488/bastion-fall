@@ -26,9 +26,20 @@ import java.util.Map;
 import java.util.UUID;
 
 public class ClaimBlock extends Block {
+	private final int sideLength; // Side length of the claim area (3 = 3x3, 5 = 5x5, etc.)
+	private final int claimRadius; // Calculated radius
+
+	public ClaimBlock(Properties properties, int sideLength) {
+		super(properties);
+		this.sideLength = sideLength;
+		this.claimRadius = (sideLength - 1) / 2;
+	}
 
 	public ClaimBlock(Properties properties) {
 		super(properties);
+		int defaultSideLength = 3; // 3 = 3x3
+		this.sideLength = defaultSideLength;
+		this.claimRadius = (defaultSideLength - 1) / 2;
 	}
 
 	@Override
@@ -44,8 +55,8 @@ public class ClaimBlock extends Block {
 			placerUUID = placer.getUUID();
 		}
 
-		for (int dx = -1; dx <= 1; dx++) {
-			for (int dz = -1; dz <= 1; dz++) {
+		for (int dx = -claimRadius; dx <= claimRadius; dx++) {
+			for (int dz = -claimRadius; dz <= claimRadius; dz++) {
 				ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
 				if (claimStorage.isChunkClaimed(currentChunk)) {
 					UUID owner = claimStorage.getChunkOwner(currentChunk);
@@ -58,12 +69,11 @@ public class ClaimBlock extends Block {
 					}
 				} else {
 					claimStorage.claimChunk(currentChunk, placerUUID);
-
-					if (isEdgeChunk(dx, dz) && placer instanceof ServerPlayer) {
-						showClaimBoxParticles((ServerLevel) level, chunkPos);
-					}
 				}
 			}
+		}
+		if (placer instanceof ServerPlayer) {
+			showClaimBoxParticles((ServerLevel) level, chunkPos, claimRadius);
 		}
 	}
 
@@ -100,7 +110,7 @@ public class ClaimBlock extends Block {
 					}
 
 					if (ticks[0] % 20 == 0) { // every second
-						showClaimBoxParticles(serverLevel, centerChunkFinal);
+						showClaimBoxParticles(serverLevel, centerChunkFinal, claimRadius);
 					}
 
 					ticks[0]++;
@@ -116,15 +126,15 @@ public class ClaimBlock extends Block {
 		return InteractionResult.CONSUME; // or PASS if you want other interactions to work
 	}
 
-	private boolean isEdgeChunk(int dx, int dz) {
-		return (dx == -1 || dx == 1 || dz == -1 || dz == 1);
+	private boolean isEdgeChunk(int dx, int dz, int radius) {
+		return (dx == -radius || dx == radius || dz == -radius || dz == radius);
 	}
 
-	private void showClaimBoxParticles(ServerLevel level, ChunkPos centerChunk) {
-		int minChunkX = centerChunk.x - 1;
-		int maxChunkX = centerChunk.x + 1;
-		int minChunkZ = centerChunk.z - 1;
-		int maxChunkZ = centerChunk.z + 1;
+	private void showClaimBoxParticles(ServerLevel level, ChunkPos centerChunk, int radius) {
+		int minChunkX = centerChunk.x - radius;
+		int maxChunkX = centerChunk.x + radius;
+		int minChunkZ = centerChunk.z - radius;
+		int maxChunkZ = centerChunk.z + radius;
 
 		int minY = level.getMinBuildHeight();
 		int maxY = level.getMaxBuildHeight();
@@ -141,6 +151,7 @@ public class ClaimBlock extends Block {
 			spawnVerticalParticleColumn(level, maxChunkX * 16 + 15, z, minY, maxY);  // east edge
 		}
 
+		// Corners
 		spawnVerticalParticleColumn(level, minChunkX * 16, minChunkZ * 16, minY, maxY);       // NW
 		spawnVerticalParticleColumn(level, maxChunkX * 16 + 15, minChunkZ * 16, minY, maxY);  // NE
 		spawnVerticalParticleColumn(level, minChunkX * 16, maxChunkZ * 16 + 15, minY, maxY);  // SW

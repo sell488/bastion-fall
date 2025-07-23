@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "bastionfall:block/claim_block"
+    "all": "bastionfall:block/claim_block_tier_2"
   }
 }

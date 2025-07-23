@@ -71,7 +71,7 @@ public class BastionFall
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModBlocks.CLAIM_BLOCK);
+            event.accept(ModBlocks.CLAIM_BLOCK_TIER_1);
         }
     }
 

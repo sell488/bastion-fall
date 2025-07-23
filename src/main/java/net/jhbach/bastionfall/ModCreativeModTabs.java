@@ -15,10 +15,11 @@ public class ModCreativeModTabs {
 			DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BastionFall.MODID);
 
 	public static final RegistryObject<CreativeModeTab> BASTIONFALL_TAB = CREATIVE_MODE_TABS.register("bastionfall_tab",
-			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.CLAIM_BLOCK.get()))
+			() -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.CLAIM_BLOCK_TIER_1.get()))
 					.title(Component.translatable("creativetab.bastionfall_tab"))
 					.displayItems((itemDisplayParameters, output) -> {
-						output.accept(ModBlocks.CLAIM_BLOCK.get());
+						output.accept(ModBlocks.CLAIM_BLOCK_TIER_1.get());
+						output.accept(ModBlocks.CLAIM_BLOCK_TIER_2.get());
 					})
 					.build());
 

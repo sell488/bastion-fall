@@ -57,7 +57,7 @@ public class ClaimBlockTest {
 			storage.resetClaims();
 
 			// Simulate placing the ClaimBlock
-			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK.get();
+			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
 			level.setBlock(blockPos, claimBlock.defaultBlockState(), 3);
 			claimBlock.setPlacedBy(level, blockPos, claimBlock.defaultBlockState(), mockPlayer, ItemStack.EMPTY);
 
@@ -120,7 +120,7 @@ public class ClaimBlockTest {
 
 			// Place ClaimBlock for Player A
 			BlockPos blockPosA = helper.absolutePos(new BlockPos(8, 1, 8));
-			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK.get();
+			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
 			level.setBlock(blockPosA, claimBlock.defaultBlockState(), 3);
 			claimBlock.setPlacedBy(level, blockPosA, claimBlock.defaultBlockState(), playerA, ItemStack.EMPTY);
 
@@ -170,7 +170,7 @@ public class ClaimBlockTest {
 
 			// Place first ClaimBlock
 			BlockPos blockPosA = helper.absolutePos(new BlockPos(8, 1, 8));
-			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK.get();
+			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
 			level.setBlock(blockPosA, claimBlock.defaultBlockState(), 3);
 			claimBlock.setPlacedBy(level, blockPosA, claimBlock.defaultBlockState(), player, ItemStack.EMPTY);
 
