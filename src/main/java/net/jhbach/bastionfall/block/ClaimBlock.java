@@ -37,30 +37,30 @@ public class ClaimBlock extends Block {
 			return;
 		}
 
-		System.out.println("BOOG THIS IS WORKING");
-
 		ChunkPos chunkPos = new ChunkPos(pos);
 		ClaimStorage claimStorage = ClaimStorage.get(serverLevel);
+		UUID placerUUID = UUID.randomUUID();
+		if (placer != null) {
+			placerUUID = placer.getUUID();
+		}
 
-		if (placer instanceof Player player) {
-			for (int dx = -1; dx <= 1; dx++) {
-				for (int dz = -1; dz <= 1; dz++) {
-					ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
-					if (claimStorage.isChunkClaimed(currentChunk)) {
-						UUID owner = claimStorage.getChunkOwner(currentChunk);
-						if (!placer.getUUID().equals(owner)) {
+		for (int dx = -1; dx <= 1; dx++) {
+			for (int dz = -1; dz <= 1; dz++) {
+				ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
+				if (claimStorage.isChunkClaimed(currentChunk)) {
+					UUID owner = claimStorage.getChunkOwner(currentChunk);
+					if (!placerUUID.equals(owner)) {
+						if (placer instanceof Player player) {
 							player.getInventory().add(player.getItemInHand(player.getUsedItemHand()));
-							level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-							return;
 						}
-					} else {
-						claimStorage.claimChunk(currentChunk, player.getUUID());
+						level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+						return;
+					}
+				} else {
+					claimStorage.claimChunk(currentChunk, placerUUID);
 
-						if (isEdgeChunk(dx, dz)) {
-							if (placer instanceof ServerPlayer) {
-								showClaimBoxParticles((ServerLevel) level, chunkPos);
-							}
-						}
+					if (isEdgeChunk(dx, dz) && placer instanceof ServerPlayer) {
+						showClaimBoxParticles((ServerLevel) level, chunkPos);
 					}
 				}
 			}
@@ -147,9 +147,6 @@ public class ClaimBlock extends Block {
 		spawnVerticalParticleColumn(level, maxChunkX * 16 + 15, maxChunkZ * 16 + 15, minY, maxY); // SE
 
 	}
-
-
-
 
 	private void spawnVerticalParticleColumn(ServerLevel level, int blockX, int blockZ, int minY, int maxY) {
 		for (int y = minY; y <= maxY; y += 4) {
