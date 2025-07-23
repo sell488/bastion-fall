@@ -18,7 +18,7 @@ import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ClaimStorageUnitTest {
+public class GameRunnerTest {
 
 	@TestFactory
 	Collection<DynamicTest> testForgeGameTestResults() throws Exception {
