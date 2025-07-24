@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "bastionfall:claim_block_tier_1",
+    "bastionfall:claim_block_tier_2",
+    "bastionfall:claim_block_tier_3"
+  ]
+}

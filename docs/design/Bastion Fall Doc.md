@@ -87,6 +87,14 @@ Claimed areas:
 - Are required to activate AABs
 - Can be visualized with particle effects or UI
 
+## Claim Islands
+
+**Claim Islands**: A connected graph of claimed chunk nodes. A Claim Island is a set of adjacent claimed chunks that form a contiguous area. Chunks that share corners but not edges should not be considered a part of the same island
+
+Claim Blocks are the declarative source for chunk claims.
+
+AABs are the declarative sources for a Claim Island. An island cannot be defined without an AAB. 
+
 # Rewards
 When a raid is defeated, players will receive rewards 
 

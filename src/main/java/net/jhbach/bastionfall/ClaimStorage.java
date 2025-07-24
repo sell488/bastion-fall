@@ -73,6 +73,10 @@ public class ClaimStorage extends SavedData {
 		}
 	}
 
+	public Map<ChunkPos, UUID> getClaimStorage() {
+		return claims;
+	}
+
 	@VisibleForTesting
 	public void resetClaims() {
 		claims.clear();

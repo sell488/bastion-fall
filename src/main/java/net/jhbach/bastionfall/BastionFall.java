@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.jhbach.bastionfall.block.ModBlocks;
 import net.jhbach.bastionfall.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.api.distmarker.Dist;
@@ -46,6 +47,9 @@ public class BastionFall
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
+        // GameTestJUnitReporter is initialized before any GameTest batch runs
+        net.jhbach.bastionfall.test.GameTestJUnitReporter.init();
+
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -67,7 +71,7 @@ public class BastionFall
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModBlocks.CLAIM_BLOCK);
+            event.accept(ModBlocks.CLAIM_BLOCK_TIER_1);
         }
     }
 
@@ -77,6 +81,8 @@ public class BastionFall
     {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+        ServerLevel overworld = event.getServer().overworld();
+        ClaimStorage.get(overworld);
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
