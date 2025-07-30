@@ -1,0 +1,35 @@
+{
+    DataVersion: 3120,
+    size: [5, 1, 5],
+    data: [
+        {pos: [0, 0, 0], state: "minecraft:air"},
+        {pos: [1, 0, 0], state: "minecraft:air"},
+        {pos: [2, 0, 0], state: "minecraft:air"},
+        {pos: [3, 0, 0], state: "minecraft:air"},
+        {pos: [4, 0, 0], state: "minecraft:air"},
+        {pos: [0, 0, 1], state: "minecraft:air"},
+        {pos: [1, 0, 1], state: "minecraft:air"},
+        {pos: [2, 0, 1], state: "minecraft:air"},
+        {pos: [3, 0, 1], state: "minecraft:air"},
+        {pos: [4, 0, 1], state: "minecraft:air"},
+        {pos: [0, 0, 2], state: "minecraft:air"},
+        {pos: [1, 0, 2], state: "minecraft:air"},
+        {pos: [2, 0, 2], state: "minecraft:air"},
+        {pos: [3, 0, 2], state: "minecraft:air"},
+        {pos: [4, 0, 2], state: "minecraft:air"},
+        {pos: [0, 0, 3], state: "minecraft:air"},
+        {pos: [1, 0, 3], state: "minecraft:air"},
+        {pos: [2, 0, 3], state: "minecraft:air"},
+        {pos: [3, 0, 3], state: "minecraft:air"},
+        {pos: [4, 0, 3], state: "minecraft:air"},
+        {pos: [0, 0, 4], state: "minecraft:air"},
+        {pos: [1, 0, 4], state: "minecraft:air"},
+        {pos: [2, 0, 4], state: "minecraft:air"},
+        {pos: [3, 0, 4], state: "minecraft:air"},
+        {pos: [4, 0, 4], state: "minecraft:air"}
+    ],
+    entities: [],
+    palette: [
+        "minecraft:air"
+    ]
+}

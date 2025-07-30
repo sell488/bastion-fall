@@ -10,7 +10,6 @@ import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -47,7 +46,7 @@ public class BastionBlockTest {
 		level.addFreshEntity(mockPlayer);
 	}
 
-	@GameTest
+	@GameTest(template = "bastion_block", batch = "bastion_block")
 	public static void onPlace_unclaimedChunk_blockNotPlacedAndItermReturned(ServerLevel level, GameTestHelper helper) {
 		BlockPos pos = helper.absolutePos(new BlockPos(1, 2, 1));
 		ItemStack itemStack = new ItemStack(ModBlocks.BASTION_BLOCK.get());

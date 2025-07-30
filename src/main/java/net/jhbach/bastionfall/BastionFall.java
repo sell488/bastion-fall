@@ -1,6 +1,7 @@
 package net.jhbach.bastionfall;
 
 import com.mojang.logging.LogUtils;
+import net.jhbach.bastionfall.block.ModBlockEntities;
 import net.jhbach.bastionfall.block.ModBlocks;
 import net.jhbach.bastionfall.item.ModItems;
 import net.minecraft.client.Minecraft;
@@ -37,6 +38,7 @@ public class BastionFall
         ModCreativeModTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

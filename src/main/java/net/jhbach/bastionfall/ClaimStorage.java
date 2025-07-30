@@ -63,13 +63,35 @@ public class ClaimStorage extends SavedData {
 	}
 
 	public void claimChunk(ChunkPos pos, UUID owner) {
-		claims.put(pos, owner);
-		setDirty();
+		if (!claims.containsKey(pos)) {
+			claims.put(pos, owner);
+			setDirty();
+		}
 	}
 
 	public void unclaimChunk(ChunkPos pos) {
 		if(claims.remove(pos) != null) {
 			setDirty();
+		}
+	}
+
+	public void claimChunksAround(ChunkPos pos, UUID owner, int radius) {
+		for (int dx = -radius; dx <= radius; dx++) {
+			for (int dz = -radius; dz <= radius; dz++) {
+				ChunkPos currentChunk = new ChunkPos(pos.x + dx, pos.z + dz);
+				claimChunk(currentChunk, owner);
+			}
+		}
+	}
+
+	public void unclaimChunksAround(ChunkPos chunk, UUID owner, int radius) {
+		for (int dx = -radius; dx <= radius; dx++) {
+			for (int dz = -radius; dz <= radius; dz++) {
+				ChunkPos currentChunk = new ChunkPos(chunk.x + dx, chunk.z + dz);
+				if(owner.equals(claims.get(currentChunk))) {
+					unclaimChunk(currentChunk);
+				}
+			}
 		}
 	}
 

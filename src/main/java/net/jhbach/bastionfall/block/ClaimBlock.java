@@ -14,6 +14,8 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class ClaimBlock extends Block {
+public class ClaimBlock extends Block implements EntityBlock {
 	private final int sideLength; // Side length of the claim area (3 = 3x3, 5 = 5x5, etc.)
 	private final int claimRadius; // Calculated radius
 
@@ -43,6 +45,11 @@ public class ClaimBlock extends Block {
 	}
 
 	@Override
+	public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+		return new ClaimBlockEntity(pos, state);
+	}
+
+	@Override
 	public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, LivingEntity placer, @NotNull ItemStack stack) {
 		if (!(level instanceof ServerLevel serverLevel)) {
 			return;
@@ -50,28 +57,24 @@ public class ClaimBlock extends Block {
 
 		ChunkPos chunkPos = new ChunkPos(pos);
 		ClaimStorage claimStorage = ClaimStorage.get(serverLevel);
-		UUID placerUUID = UUID.randomUUID();
-		if (placer != null) {
-			placerUUID = placer.getUUID();
+		UUID placerUUID = (placer != null) ? placer.getUUID() : UUID.randomUUID();
+
+		UUID existingOwner = claimStorage.getChunkOwner(chunkPos);
+		if(existingOwner != null && !existingOwner.equals(placerUUID)) {
+			if (placer instanceof Player player) {
+				player.getInventory().add(player.getItemInHand(player.getUsedItemHand()));
+			}
+			level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+			return;
 		}
 
-		for (int dx = -claimRadius; dx <= claimRadius; dx++) {
-			for (int dz = -claimRadius; dz <= claimRadius; dz++) {
-				ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
-				if (claimStorage.isChunkClaimed(currentChunk)) {
-					UUID owner = claimStorage.getChunkOwner(currentChunk);
-					if (!placerUUID.equals(owner)) {
-						if (placer instanceof Player player) {
-							player.getInventory().add(player.getItemInHand(player.getUsedItemHand()));
-						}
-						level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-						return;
-					}
-				} else {
-					claimStorage.claimChunk(currentChunk, placerUUID);
-				}
-			}
+		claimStorage.claimChunksAround(chunkPos, placerUUID, claimRadius);
+
+		BlockEntity blockEntity = level.getBlockEntity(pos);
+		if (blockEntity instanceof ClaimBlockEntity claimBlockEntity) {
+			claimBlockEntity.setOwner(placerUUID);
 		}
+
 		if (placer instanceof ServerPlayer) {
 			showClaimBoxParticles((ServerLevel) level, chunkPos, claimRadius);
 		}
@@ -124,6 +127,26 @@ public class ClaimBlock extends Block {
 		}
 
 		return InteractionResult.CONSUME; // or PASS if you want other interactions to work
+	}
+
+	@Override
+	public void onRemove(@NotNull BlockState state, @NotNull Level level,
+						 @NotNull BlockPos pos, @NotNull BlockState newState, boolean isMoving) {
+		if(!(level instanceof ServerLevel serverLevel)) {
+			return;
+		}
+
+		ChunkPos chunkPos = new ChunkPos(pos);
+		ClaimStorage claimStorage = ClaimStorage.get(serverLevel);
+		BlockEntity blockEntity = level.getBlockEntity(pos);
+		if(blockEntity instanceof ClaimBlockEntity claimBlockEntity) {
+			UUID owner = claimBlockEntity.getOwner();
+			if(owner != null) {
+				claimStorage.unclaimChunksAround(chunkPos, owner, claimRadius);
+			}
+		}
+
+		super.onRemove(state, level, pos, newState, isMoving);
 	}
 
 	private boolean isEdgeChunk(int dx, int dz, int radius) {

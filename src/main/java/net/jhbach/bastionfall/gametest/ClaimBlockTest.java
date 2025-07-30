@@ -199,4 +199,48 @@ public class ClaimBlockTest {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
 		}
 	}
+
+	@GameTest(template = "claim_block", batch = "claim_block")
+	public void breakClaimBlock_unclaimsAllClaimedChunks(GameTestHelper helper) {
+		try {
+			ServerLevel level = helper.getLevel();
+			ClaimStorage claimStorage = ClaimStorage.get(level);
+			claimStorage.resetClaims();
+
+			ServerPlayer player = mockPlayer;
+			UUID owner = player.getUUID();
+
+			// Place ClaimBlock
+			BlockPos blockPos = helper.absolutePos(new BlockPos(8, 1, 8));
+			ClaimBlock claimBlock = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
+			level.setBlock(blockPos, claimBlock.defaultBlockState(), 3);
+			claimBlock.setPlacedBy(level, blockPos, claimBlock.defaultBlockState(), player, ItemStack.EMPTY);
+
+			ChunkPos chunkPos = new ChunkPos(blockPos);
+			for (int dx = -1; dx <= 1; dx++) {
+				for (int dz = -1; dz <= 1; dz++) {
+					ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
+					helper.assertTrue(claimStorage.isChunkClaimed(currentChunk),
+							"Chunk at " + currentChunk + " should be claimed");
+					helper.assertTrue(owner.equals(claimStorage.getChunkOwner(currentChunk)),
+							"Chunk at " + currentChunk + " should be owned by the player");
+				}
+			}
+
+			level.destroyBlock(blockPos, false);
+
+			for (int dx = -1; dx <= 1; dx++) {
+				for (int dz = -1; dz <= 1; dz++) {
+					ChunkPos currentChunk = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
+					helper.assertTrue(!claimStorage.isChunkClaimed(currentChunk),
+							"Chunk at " + currentChunk + " should be unclaimed");
+				}
+			}
+
+			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
+			helper.succeed();
+		} catch (Throwable t) {
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
+		}
+	}
 }
