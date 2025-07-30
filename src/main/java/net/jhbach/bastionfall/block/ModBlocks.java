@@ -33,6 +33,12 @@ public class ModBlocks {
 					5
 			));
 
+	public static final RegistryObject<Block> BASTION_BLOCK = registerBlock("bastion_block",
+			() -> new BastionBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
+					.strength(5.0f)
+					.noOcclusion()
+			));
+
 	private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
 		RegistryObject<T> toReturn = BLOCKS.register(name, block);
 		registerBlockItem(name, toReturn);

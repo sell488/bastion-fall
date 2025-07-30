@@ -1,6 +1,25 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "block/block",
   "textures": {
-    "all": "bastionfall:block/claim_block_tier_1"
-  }
+    "side1": "bastionfall:block/claim_block_tier_1/claim_block_tier_1_side_1",
+    "side2": "bastionfall:block/claim_block_tier_1/claim_block_tier_1_side_2",
+    "top": "bastionfall:block/claim_block_tier_1/claim_block_tier_1_top",
+    "bottom": "bastionfall:block/claim_block_tier_1/claim_block_tier_1_bottom",
+    "particle": "bastionfall:block/claim_block_tier_1/claim_block_tier_1_side_1"
+  },
+  "elements": [
+    {
+      "name": "Claim Block Shell",
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": { "uv": [0, 0, 16, 16], "texture": "#side1" },
+        "south": { "uv": [0, 0, 16, 16], "texture": "#side1" },
+        "east":  { "uv": [0, 0, 16, 16], "texture": "#side2" },
+        "west":  { "uv": [0, 0, 16, 16], "texture": "#side2" },
+        "up":    { "uv": [0, 0, 16, 16], "texture": "#top" },
+        "down":  { "uv": [0, 0, 16, 16], "texture": "#bottom" }
+      }
+    }
+  ]
 }
