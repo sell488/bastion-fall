@@ -281,6 +281,7 @@ public class ClaimBlockTest {
 					"ClaimBlock item should still be in PlayerB's inventory");
 
 			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
+			helper.succeed();
 		} catch (Throwable t) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(),
 					t.getMessage());
