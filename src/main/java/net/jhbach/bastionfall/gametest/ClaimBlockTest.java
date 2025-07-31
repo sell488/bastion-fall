@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.BeforeBatch;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.gametest.framework.GameTestRunner;
 import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -91,30 +92,30 @@ public class ClaimBlockTest {
 			// Create Player A
 			UUID ownerA = UUID.fromString("00000000-0000-0000-0000-000000000002");
 			ServerPlayer playerA = new ServerPlayer(
-				level.getServer(),
-				level,
-				new GameProfile(ownerA, "PlayerA")
+					level.getServer(),
+					level,
+					new GameProfile(ownerA, "PlayerA")
 			);
 			playerA.setUUID(ownerA);
 			playerA.connection = new ServerGamePacketListenerImpl(
-				level.getServer(),
-				new Connection(null),
-				playerA
+					level.getServer(),
+					new Connection(null),
+					playerA
 			);
 			level.addFreshEntity(playerA);
 
 			// Create Player B
 			UUID ownerB = UUID.fromString("00000000-0000-0000-0000-000000000003");
 			ServerPlayer playerB = new ServerPlayer(
-				level.getServer(),
-				level,
-				new GameProfile(ownerB, "PlayerB")
+					level.getServer(),
+					level,
+					new GameProfile(ownerB, "PlayerB")
 			);
 			playerB.setUUID(ownerB);
 			playerB.connection = new ServerGamePacketListenerImpl(
-				level.getServer(),
-				new Connection(null),
-				playerB
+					level.getServer(),
+					new Connection(null),
+					playerB
 			);
 			level.addFreshEntity(playerB);
 
@@ -143,6 +144,7 @@ public class ClaimBlockTest {
 			helper.succeed();
 		} catch (Throwable t) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
+			helper.fail(t.getMessage());
 		}
 	}
 
@@ -156,15 +158,15 @@ public class ClaimBlockTest {
 			// Create Player
 			UUID owner = UUID.fromString("00000000-0000-0000-0000-000000000004");
 			ServerPlayer player = new ServerPlayer(
-				level.getServer(),
-				level,
-				new GameProfile(owner, "PlayerSameOwner")
+					level.getServer(),
+					level,
+					new GameProfile(owner, "PlayerSameOwner")
 			);
 			player.setUUID(owner);
 			player.connection = new ServerGamePacketListenerImpl(
-				level.getServer(),
-				new Connection(null),
-				player
+					level.getServer(),
+					new Connection(null),
+					player
 			);
 			level.addFreshEntity(player);
 
@@ -242,5 +244,63 @@ public class ClaimBlockTest {
 		} catch (Throwable t) {
 			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
 		}
+	}
+
+	@GameTest(template = "claim_block", batch = "claim_block")
+	public void setPlacedBy_existingClaim_blockNotPlacedAndItemReturned(GameTestHelper helper) {
+		ServerLevel level = helper.getLevel();
+		BlockPos centerPos = helper.absolutePos(BlockPos.ZERO);
+
+		ClaimStorage claimStorage = ClaimStorage.get(level);
+		claimStorage.resetClaims();
+
+		UUID playerBUUID = UUID.fromString("00000000-0000-0000-0000-000000000005");
+		ServerPlayer playerB = createMockPlayer(level, playerBUUID, "PlayerB");
+		ItemStack claimStackA = new ItemStack(ModBlocks.CLAIM_BLOCK_TIER_1.get());
+		ItemStack claimStackB = new ItemStack(ModBlocks.CLAIM_BLOCK_TIER_1.get());
+
+		ClaimBlock claimBlockA = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
+		ClaimBlock claimBlockB = (ClaimBlock) ModBlocks.CLAIM_BLOCK_TIER_1.get();
+
+		BlockPos firstClaimPos = centerPos;
+		level.setBlock(firstClaimPos, ModBlocks.CLAIM_BLOCK_TIER_1.get().defaultBlockState(), 3);
+		claimBlockA.setPlacedBy(level, firstClaimPos, claimBlockA.defaultBlockState(), mockPlayer, claimStackA);
+
+		BlockPos secondClaimPos = centerPos.offset(1, 0, 0);
+		level.setBlock(secondClaimPos, ModBlocks.CLAIM_BLOCK_TIER_1.get().defaultBlockState(), 3);
+		claimBlockB.setPlacedBy(level, secondClaimPos, claimBlockB.defaultBlockState(), playerB, claimStackB);
+
+		ChunkPos secondClaimBlockChunk = new ChunkPos(secondClaimPos);
+
+		try {
+			helper.assertFalse(playerBUUID.equals(claimStorage.getChunkOwner(secondClaimBlockChunk)),
+					"Chunk at " + secondClaimBlockChunk + " should not be claimed by PlayerB");
+			helper.assertFalse(level.getBlockState(secondClaimPos).getBlock() instanceof ClaimBlock,
+					"Block at " + secondClaimPos + " should not be placed due to existing claim");
+			helper.assertTrue(claimStackB.getCount() == 1,
+					"ClaimBlock item should still be in PlayerB's inventory");
+
+			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
+		} catch (Throwable t) {
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(),
+					t.getMessage());
+			helper.fail(t.getMessage());
+		}
+	}
+
+	private ServerPlayer createMockPlayer(ServerLevel level, UUID playerUUID, String playerName) {
+		ServerPlayer player = new ServerPlayer(
+				level.getServer(),
+				level,
+				new GameProfile(playerUUID, playerName)
+		);
+		player.setUUID(playerUUID);
+		player.connection = new ServerGamePacketListenerImpl(
+				level.getServer(),
+				new Connection(null),
+				player
+		);
+		level.addFreshEntity(player);
+		return player;
 	}
 }
