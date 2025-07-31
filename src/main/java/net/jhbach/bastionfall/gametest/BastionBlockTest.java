@@ -1,6 +1,9 @@
 package net.jhbach.bastionfall.gametest;
 
 import com.mojang.authlib.GameProfile;
+import net.jhbach.bastionfall.BastionFall;
+import net.jhbach.bastionfall.ClaimStorage;
+import net.jhbach.bastionfall.block.BastionBlock;
 import net.jhbach.bastionfall.block.ModBlocks;
 import net.jhbach.bastionfall.test.GameTestJUnitReporter;
 import net.minecraft.core.BlockPos;
@@ -13,6 +16,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.gametest.GameTestHolder;
 import net.minecraftforge.gametest.PrefixGameTestTemplate;
@@ -43,8 +48,36 @@ public class BastionBlockTest {
 				new Connection(null),
 				mockPlayer
 		);
-
 		level.addFreshEntity(mockPlayer);
+	}
+
+	@GameTest(template = "bastion_block", batch = "bastion_block")
+	public static void onPlace_correctlyClaimedChunk_blockPlaced(GameTestHelper helper) {
+		ServerLevel level = helper.getLevel();
+		BlockPos centerPos = helper.absolutePos(BlockPos.ZERO);
+		ChunkPos chunkPos = new ChunkPos(centerPos);
+
+		ClaimStorage claimStorage = ClaimStorage.get(level);
+		claimStorage.resetClaims();
+		claimStorage.claimChunk(chunkPos, mockPlayer.getUUID());
+
+		ItemStack bastionBlockItem = new ItemStack(ModBlocks.BASTION_BLOCK.get());
+		BastionBlock bastionBlock = (BastionBlock) ModBlocks.BASTION_BLOCK.get().defaultBlockState().getBlock();
+
+		level.setBlock(centerPos, bastionBlock.defaultBlockState(), 3);
+		bastionBlock.setPlacedBy(level, centerPos, bastionBlock.defaultBlockState(), mockPlayer, bastionBlockItem);
+
+		try {
+			Block blockPlaced = level.getBlockState(centerPos).getBlock();
+			helper.assertTrue(blockPlaced instanceof BastionBlock,
+					"Expected BastionBlock to be placed at " + centerPos);
+			GameTestJUnitReporter.recordPass(Thread.currentThread().getStackTrace()[1].getMethodName());
+			helper.succeed();
+		} catch (Throwable t) {
+			GameTestJUnitReporter.recordFail(Thread.currentThread().getStackTrace()[1].getMethodName(), t.getMessage());
+			helper.fail(t.getMessage());
+		}
+
 	}
 
 	@GameTest(template = "bastion_block", batch = "bastion_block")
