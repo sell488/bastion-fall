@@ -3,6 +3,7 @@ package net.jhbach.bastionfall;
 import com.mojang.logging.LogUtils;
 import net.jhbach.bastionfall.block.ModBlockEntities;
 import net.jhbach.bastionfall.block.ModBlocks;
+import net.jhbach.bastionfall.network.BastionNetwork;
 import net.jhbach.bastionfall.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
@@ -67,6 +68,8 @@ public class BastionFall
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+
+        BastionNetwork.register();
     }
 
     // Add the example block item to the building blocks tab
