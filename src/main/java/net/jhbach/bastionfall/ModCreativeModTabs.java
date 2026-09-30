@@ -20,6 +20,7 @@ public class ModCreativeModTabs {
 					.displayItems((itemDisplayParameters, output) -> {
 						output.accept(ModBlocks.CLAIM_BLOCK_TIER_1.get());
 						output.accept(ModBlocks.CLAIM_BLOCK_TIER_2.get());
+						output.accept(ModBlocks.BASTION_BLOCK.get());
 					})
 					.build());
 
